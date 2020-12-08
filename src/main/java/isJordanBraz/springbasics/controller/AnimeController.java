@@ -30,7 +30,7 @@ public class AnimeController {
     }
 
     @GetMapping("/find")
-    public ResponseEntity<List<Anime>> findById(@RequestParam String name) {
+    public ResponseEntity<List<Anime>> findByName(@RequestParam String name) {
         return ResponseEntity.ok(animeService.findByName(name));
     }
 
@@ -40,12 +40,12 @@ public class AnimeController {
     }
 
     @DeleteMapping("/{id}")
-    public void update(@PathVariable Long id) {
+    public void delete(@PathVariable Long id) {
         animeService.delete(id);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Anime> save(@RequestBody @Valid AnimeDto animeDto, @PathVariable Long id) {
+    public ResponseEntity<Anime> update(@RequestBody @Valid AnimeDto animeDto, @PathVariable Long id) {
         return ResponseEntity.ok(animeService.update(animeDto, id));
     }
 }
