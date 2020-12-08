@@ -5,10 +5,10 @@ import isJordanBraz.springbasics.dto.AnimeDto;
 import isJordanBraz.springbasics.service.AnimeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Log4j2
@@ -26,11 +26,16 @@ public class AnimeController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Anime> findById(@PathVariable Long id) {
-        return ResponseEntity.ok(animeService.findById(id));
+        return ResponseEntity.ok(animeService.findByIdOrThrow(id));
+    }
+
+    @GetMapping("/find")
+    public ResponseEntity<List<Anime>> findById(@RequestParam String name) {
+        return ResponseEntity.ok(animeService.findByName(name));
     }
 
     @PostMapping
-    public ResponseEntity<Anime> save(@RequestBody AnimeDto animeDto) {
+    public ResponseEntity<Anime> save(@RequestBody @Valid AnimeDto animeDto) {
         return ResponseEntity.ok(animeService.save(animeDto));
     }
 
@@ -40,7 +45,7 @@ public class AnimeController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Anime> save(@RequestBody AnimeDto animeDto, @PathVariable Long id) {
+    public ResponseEntity<Anime> save(@RequestBody @Valid AnimeDto animeDto, @PathVariable Long id) {
         return ResponseEntity.ok(animeService.update(animeDto, id));
     }
 }
