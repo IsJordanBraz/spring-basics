@@ -1,8 +1,6 @@
 package isJordanBraz.springbasics.service;
 
-import isJordanBraz.springbasics.controller.AnimeController;
 import isJordanBraz.springbasics.domain.Anime;
-import isJordanBraz.springbasics.dto.AnimeDto;
 import isJordanBraz.springbasics.exception.AnimeNotFoundException;
 import isJordanBraz.springbasics.repository.AnimeRepository;
 import isJordanBraz.springbasics.util.AnimeCreator;
@@ -21,8 +19,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(SpringExtension.class)
 class AnimeServiceTest {
